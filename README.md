@@ -35,7 +35,7 @@ Before addressing the impact that removing grades had on the metrics, the end re
 
 ![](Resources/Bottom_5.png)
 
-Note: One observation right out of the gate - based on the data above, Charter schools far out-perform District schools.
+**Note**: One observation right out of the gate - based on the data above, Charter schools far out-perform District schools.
 
 ![](Resources/scores_spending.png)
 
@@ -45,37 +45,50 @@ Note: One observation right out of the gate - based on the data above, Charter s
 
 ## Results: 
 
-The impact had on the data was the following:
+The impact removing THS ninth graders had on the data was the following:
 
 - The **District Summary** saw minor drops in various categories:
-![](Resources/district_summary_pre.png)
-![](Resources/district_summary.png)
   - The student count has decreased by 461, as expected.
   - **Average Math Score**, **% Passing Math**, **% Passing Reading**, and **% Overall Passing** metrics dropped slightly, but by a relatively insignificant amount.
+![](Resources/district_summary_pre.png)
+![](Resources/district_summary.png)
 
 - The **School Summary** charts shows no change for all schools except THS since only THS data was altered. Given that the summaries are calculated per school, it's only when data is aggregated that overall impact is seen.
-
-![](Resources/top5_pre.png)
-![](Resources/Top_5.png)
-
   - **Note** - only THS averages and percentage calculations show differences.
-  - **Error Identified** - in the steps provided by this exercise, the `per_school_counts` DataFrame was never identified as needing to be altered in order to reflect the removal of THS ninth graders. You will notice in the above screenshots that the "Total Student" value remains unchanged, yet in the District Summaries the "Total Students" value is reduced by 461. Though this head count bears no impact on the calculations (THS averages and percentages are calculated using tenth-twelfth grade students only), the oversight is worth documenting for future exercise instruction revisions.
-  
-- **THS's Relative Performance** shows minor change, thanks to the extra work done to recalculate metrics used THS total students minus ninth graders. THS's standing against other schools remains unchanged.
+  - **Error Identified** - in the steps provided by this exercise, the `per_school_counts` dataframe was never identified as needing to be altered in order to reflect the removal of THS ninth graders. You will notice in the above screenshots that the "Total Student" value for THS is the same in both screenshots despite the removal of ninth graders from various other total student values within other dataframes. For example, the District Summaries "Total Students" column reflects the removal of 461 students, as expected. Though this oversight bore no impact on calculations, it is worth documenting for future exercise instruction revisions.
+  ![](Resources/top5_pre.png)
+![](Resources/Top_5.png)
+- **THS's Relative Performance** shows only a minor change thanks to the extra work done to recalculate metrics using THS total students minus ninth graders. The change did not impact THS's standing against other schools.
   - Average Math Score: 83.41 became 83.35
   - Average Reading Score: 83.85 became 83.9
   - % Passing Math: 93.27 became 93.18
   - % Passing Reading: 97.31 became 97.02
   - % Overall Passing: 90.95 became 90.63
 - Data replacement also had the following effects:
-  - Math and reading scores by grade
-    - Thomas High School	nan	83.1	83.5	83.5 (pre-adjustment)
-    - Thomas High School	nan	84.3	83.6	83.8
-  - Scores by school spending
-    - 
-  - Scores by school size
-  - Scores by school type
+  - **Math and reading scores by grade**: On a per-school basis, under 1% in difference for THS.
+    - Math: pre-adjustment
+    ![](Resources/THSmathPRE.png)
+    - Math: post-adjustment
+    ![](Resources/THSmathPOST.png)
+    - Reading: pre-adjustment
+    ![](Resources/THSreadPRE.png)
+    - Reading: post-adjustment
+    ![](Resources/THSreadPOST.png)
+  - **Scores by school spending**: The most significant change was noted in the % Overall Passing for the $585-629 category, increasing from 81% to 90%. All in all, scores were seen increasing once adjusted.
+    - ![](Resources/scores_spendingPRE.png)
+    - ![](Resources/scores_spending.png)
+  - **Scores by school size**: No change observed
+    - ![](Resources/scores_sizePRE.png)
+    - ![](Resources/scores_by_size.png)
+  - **Scores by school type**: No change observed
+    - ![](Resources/scores_typePRE.png)
+    - ![](Resources/scores_by_type.png)
   
 ## Summary: 
 
-Summarize four changes in the updated school district analysis after reading and math scores for the ninth grade at Thomas High School have been replaced with NaNs.
+After replacing the reading and math scores for the ninth grade students at Thomas High School (THS) with NaNs, four changes were observed:
+
+1. Overall District score metrics dropped slightly.
+2. THS's math scores increased, albiet slightly.
+3. THS's reading scores, however, decreased slightly
+4. Scores by school spending increased in the Overall Passing category from 81% to 90% for the $585-629 category.
